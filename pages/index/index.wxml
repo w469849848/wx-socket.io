@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="container" hidden="{{isshowgreeting ? true:false}}">
+	<view class="greeting">
+		<text class="nick-label">请输入你的名字</text>
+		<input type="text" class="nickname" value="{{nickname}}" auto-focus="true" bindinput="inputNameEvent" />
+		<button type="primary" class="type-btn" bindtap="enterRoom">进入聊天室</button>
+	</view>
+
+</view>
+<view class="chatbox" id="chatbox" hidden="{{isshowchatbox ? true:false}}" style="width: 100%;">
+	<view class="chatbox-title">
+		<view>Websocket多人聊天室</view>
+		<view bindtap="logout"><text>{{nickname}}</text> | <text>退出</text></view>
+	</view>
+	<view id="doc">
+		<view id="chat">
+			<view id="message" class="message">
+				<view id="onlinecount" style="background:#EFEFF4; font-size:12px; margin-top:10px; margin-left:10px; color:#666;">
+					当前共有{{onlineCount}} 人在线，在线列表：{{onlineUsers}}
+				</view>
+				<scroll-view scroll-y="true" id="scroll" style="height: 1000rpx;" scroll-top="{{scrollTop}}">
+					<view class="system clearfix" wx:for="{{arrayList}}" wx:key="item">
+						<view wx:if="{{item.isme == true}}" class="user">
+							<view class="username">{{item.username}}</view>
+							<view class="content">{{item.content}}</view>
+						</view>
+						<view wx:if="{{item.isme == false}}" class="server">
+							<view class="username">{{item.username}}</view>
+							<view class="content">{{item.content}}</view>
+						</view>
+						<view class="msg-system" wx:if="{{item.type == 'login'}}">{{item.user.username}}加入了聊天室</view>
+						<view class="msg-system" wx:if="{{item.type == 'logout'}}">{{item.user.username}}退出了聊天室</view>
+					</view>
+				</scroll-view>
+			</view>
+			<view class="input-box">
+				<view class="input">
+					<input type="text" value="{{inputValue}}" placeholder="请输入聊天内容，按Ctrl提交" bindinput="inputValue" />
+				</view>
+				<view class="action">
+					<button type="button" id="mjr_send" bindtap="submit">提交</button>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
