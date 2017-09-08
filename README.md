@@ -7,3 +7,4 @@
 #### 3.浏览器可以访问WebSocketServer/chat目录中index.html文件。
 ![image](https://github.com/w469849848/wx-socket.io/blob/master/image/QQ%E6%88%AA%E5%9B%BE20170908134953.png
 )
+![image](https://github.com/w469849848/wx-socket.io/blob/master/image/QQ%E6%88%AA%E5%9B%BE20170908135124.png)
